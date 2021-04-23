@@ -1,19 +1,33 @@
-
-
-
 #app.py
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from models import db, Plant, app
+from flask import render_template, url_for, request, redirect
 
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///plants.db'
-db = SQLAlchemy(app)
+@app.route('/')
+def index():
+    plants = Plant.query.all()
+    return render_template('index.html', plants=plants)
 
-class Plant(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    plant_type = db.Column(db.String())
-    plant_status = db.Column(db.String())
+
+@app.route('/form', methods=['GET', 'POST'])
+def form():
+    if request.form:
+        new_plant = Plant(plant_type=request.form['type'], 
+                          plant_status=request.form['status'])
+        db.add(new_plant)
+        db.commit()
+        return redirect(url_for('index'))
+    return render_template('form.html')
+
+@app.route('/delete/<id>')
+def delete(id):
+    plant = Plant.query.get(id)
+    db.session.delete(plant)
+    db.session.commit()
+    return redirect(url_for('index'))
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8000)
 
 
 #models.py
@@ -29,6 +43,7 @@ class Plant(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     plant_type = db.Column(db.String())
     plant_status = db.Column(db.String())
+    
 
 #form.html
 {% extends 'layout.html' %}
@@ -48,6 +63,7 @@ class Plant(db.Model):
     </form>
 {% endblock %}
 
+
 #index.html
 {% extends 'layout.html' %}
 
@@ -60,3 +76,17 @@ class Plant(db.Model):
     </div>
   {% endfor %}
 {% endblock %}
+
+
+
+
+
+#Question
+Which of the following will pass an id variable in the URL from the HTML to your Python route?
+{{url_for('index', id=plant.id)}}
+
+Which of the following is the correct way to input a plant’s name variable into a template’s?
+{{ plant.name }}
+
+To loop through plant data passed into a template, you write _______ plant in plants _____ to start the loop and ____ to end the loop.
+{% for plants in the plants %} {% endfor %}
