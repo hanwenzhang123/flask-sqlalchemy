@@ -1,4 +1,3 @@
-
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -14,3 +13,10 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.username
+
+    
+    
+    
+if __name__ == '__main__':
+    db.create_all()
+    app.run(debug=True, port=8000, host='127.0.0.1')
