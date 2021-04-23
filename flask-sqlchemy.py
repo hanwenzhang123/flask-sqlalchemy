@@ -19,3 +19,12 @@ pip install flask
 
 Install Flask-SQLAlchemy
 pip install flask-sqlalchemy
+
+Create the requirement file
+pip freeze > requirements.txt
+
+CSS/JavaScript files
+folder name: static
+  
+HTML files
+folder name: templates
