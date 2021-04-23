@@ -1,0 +1,69 @@
+{% block %}: This template tag (as they're called) defines a block in a template. In templates that are extended, these areas are overridable. In templates that extend other templates, this areas will override the parent template's block.
+{% extends %}: This template tag specifies what template is the parent of the current template. Think of it like extended classes in Python. You can have a change of extensions if you need them.
+{{ super() }}: This function brings in whatever content was in the same block in the parent template. Very handy if you want to include the existing content but you want to insert new content before or after the old.
+
+{% %}It is like it is a command area instead of print or evaluate area
+when you start a block, you have to end a block - {% endblock %}
+entends then the name of where you inheritate the template {% extends "layout.html" %}
+
+
+#layout.html                         
+<!doctype html>
+<html>
+    <head>
+        <title>{% block title %}Flask Basics{% endblock %}</title>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+        <p>Brought to you by the fine folks at Treehouse!</p>
+        {% block scripts %}{% endblock %}
+    </body>
+</html>
+
+
+#add.html
+{% extends "layout.html" %}
+
+{% block title %}Adding! | {{ super() }}{% endblock %} -->this will show the title as Adding! | Flask Basics after using super()
+
+{% block content %}
+<h1>{{ num1 }} + {{ num2 }} = {{ num1 + num2 }}</h1>
+{% endblock %}
+
+
+#index.html
+{% extends "layout.html" %}
+
+{% block title %}Howdy! | {{ super() }}{% endblock %}  -->this will show the title as Howdy! | Flask Basics after using super()
+
+{% block content %}
+<h1>Hello from {{ name }}!</h1>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/scripts.js"></script>
+{% endblock %}
+
+
+
+
+#exercise
+-->layout.html
+<!doctype html>
+<html>
+<head><title>{% block title %}Smells Like Bakin'{% endblock %}</title></head>
+<body>
+{% block content %}{% endblock %}
+</body>
+</html>
+
+-->index.html
+{% extends "layout.html" %}
+
+{% block title %}{{ super() }} Homepage{% endblock %}
+
+  {% block content %}
+<h1>Smells Like Bakin'!</h1>
+<p>Welcome to my bakery web site!</p>
+  {% endblock %}

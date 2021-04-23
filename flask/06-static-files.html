@@ -1,0 +1,60 @@
+The static/ directory is served automatically at /static while you're running your Flask app.
+
+CSS, images, and JavaScript are stored in static/ by default.
+Files rendered by Flask are stored in templates/ by default.
+What tag causes one template to inherit from another? {% extends %}
+How would I print the variable name in a template？  {{ name }}
+
+
+What function is used to process and return a template? render_template()
+from flask import Flask, render_template
+app = Flask(__name__)
+@app.route("/")
+def index():
+    return render_template("index.html", message="Hello Flask!");   
+
+
+You also don't have to use every block in every child template. 
+If you don't specify a new version of the block, Flask will just use whatever is there in the parent template.
+
+
+
+#layout.html                         
+<!doctype html>
+<html>
+    <head>
+        <title>{% block title %}Flask Basics{% endblock %}</title>
+        <link rel="stylesheet" href="/static/styles.css">     --> link th style sheet here
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+        <p>Brought to you by the fine folks at Treehouse!</p>
+        {% block scripts %}{% endblock %}     --> add a new script block here for the javascript file
+    </body>
+</html>
+
+
+#add.html
+{% extends "layout.html" %}
+
+{% block title %}Adding! | {{ super() }}{% endblock %} --> this will show the title as Adding! | Flask Basics after using super()
+
+{% block content %}
+<h1>{{ num1 }} + {{ num2 }} = {{ num1 + num2 }}</h1>
+{% endblock %}
+
+
+#index.html
+{% extends "layout.html" %}
+
+{% block title %}Howdy! | {{ super() }}{% endblock %}  --> this will show the title as Howdy! | Flask Basics after using super()
+
+{% block content %}
+<h1>Hello from {{ name }}!</h1>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/scripts.js"></script>        --> link the javascript file here, and js only show up in this page
+{% endblock %}
+
+
