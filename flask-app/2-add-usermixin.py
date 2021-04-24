@@ -1,5 +1,6 @@
 pip install flask-login
-Use from flask_login import UserMixin instead of from flask.ext.login import UserMixin.
+
+from flask_login import UserMixin
 
 A minxin is a acclass that gives some small in scope piece of functionality that is not standalone.
 
