@@ -29,6 +29,9 @@ pip install flask-sqlalchemy
 Install Flask-Login
 pip install flask-login
 
+Cryptographic Hashing with Flask-Bcrypt
+pip install flask-bcrypt
+
 
 CSS/JavaScript files
 folder name: static
