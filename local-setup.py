@@ -10,6 +10,9 @@ Mac: python3 -m venv env
 
 Activate your environment
 Mac: source ./env/bin/activate
+  
+Create the requirement file
+pip freeze > requirements.txt
 
 Install SQLAlchemy
 pip install sqlalchemy
@@ -23,8 +26,9 @@ pip install peewee
 Install Flask-SQLAlchemy
 pip install flask-sqlalchemy
 
-Create the requirement file
-pip freeze > requirements.txt
+Install Flask-Login
+pip install flask-login
+
 
 CSS/JavaScript files
 folder name: static
