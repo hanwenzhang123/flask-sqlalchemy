@@ -1,5 +1,3 @@
-#set-up module
-
 import datetime
 from peewee import *
 
