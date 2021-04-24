@@ -17,6 +17,9 @@ pip install sqlalchemy
 Install Flask
 pip install flask
 
+Install peewee
+pip install peewee
+
 Install Flask-SQLAlchemy
 pip install flask-sqlalchemy
 
