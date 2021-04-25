@@ -29,8 +29,11 @@ pip install flask-sqlalchemy
 Install Flask-Login
 pip install flask-login
 
-Cryptographic Hashing with Flask-Bcrypt
+Install Cryptographic Hashing with Flask-Bcrypt
 pip install flask-bcrypt
+
+Install Flask-WTF Forms
+pip install flask-wtf
 
 
 CSS/JavaScript files
