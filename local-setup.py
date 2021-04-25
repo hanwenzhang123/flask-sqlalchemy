@@ -35,6 +35,9 @@ pip install flask-bcrypt
 Install Flask-WTF Forms
 pip install flask-wtf
 
+Install Flask Restful API
+pip install flask-restful
+
 
 CSS/JavaScript files
 folder name: static
