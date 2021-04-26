@@ -32,3 +32,13 @@ check_password_hash() - function to check a hash against a string to see if they
 #Hash the password, set the user.password attribute to the hashed password, and return the user.
 
 from flask.ext.bcrypt import check_password_hash, generate_password_hash
+
+def set_password(user, password):
+    user.password = generate_password_hash(password)
+    return user
+
+def validate_password(user, password):
+    return check_password_hash(user.password, password)
+  
+  
+   
